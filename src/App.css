@@ -1,15 +1,26 @@
-.App {
+#root {
+  background-color: black;
+}
+
+#appcon {
+  width: 100vw;
+  height: 100vh;
   text-align: center;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+  /* flex-wrap: wrap; */
+  justify-content: space-around;
   padding: 20px 0px 20px 0px;
   border: 15px solid rgba(250, 172, 62, 0.79);
   border-radius: 15px;
-  color: azure;
+  color: rgb(205, 60, 200);
 
-  background-color: black;
+  background-color: rgb(0, 0, 0);
 }
-.Appcon {
+
+#mapCard {
+  background-color: rgb(0, 0, 0);
+}
+#cardButton {
+  margin: 10px;
 }

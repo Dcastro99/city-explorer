@@ -8,6 +8,7 @@ This project will allow the user to type in the city and a map will render of th
 
 ## Getting Started
 <!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
+To begin to create each compnent needed.
 
 
 ## Architecture
@@ -19,4 +20,14 @@ This project will allow the user to type in the city and a map will render of th
 01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
 
 ## Credit and Collaborations
-<!-- Give credit (and a link) to other people or resources that helped you build this application. -->
+<!-- Give credit (and a link) to other people or resources that helped you build this application. -->.
+
+Name of feature:City-explorer
+
+Estimate of time needed to complete: 3 hours
+
+Start time: 8:15pm 3.16.22
+
+Finish time: 5:30pm 3.17.22
+
+Actual time needed to complete: incomplete

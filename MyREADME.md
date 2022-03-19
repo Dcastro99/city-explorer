@@ -31,3 +31,5 @@ Start time: 8:15pm 3.16.22
 Finish time: 5:30pm 3.17.22
 
 Actual time needed to complete: incomplete
+
+![FlowChart](./src/flowChart.png)

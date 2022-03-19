@@ -30,7 +30,7 @@ class Main extends React.Component {
     } catch (error) {
       this.setState({
         error: true,
-        errorType: 'wtf happend',
+        errorType: 'What happend!?!?',
         errorStatus: error.response.status,
       });
     }

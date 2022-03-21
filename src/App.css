@@ -3,8 +3,7 @@
 }
 
 #appcon {
-  width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   text-align: center;
   display: flex;
   flex-direction: row;
@@ -23,4 +22,22 @@
 }
 #cardButton {
   margin: 10px;
+}
+
+#wbox {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border: 10px bold beige;
+  padding: 1rem;
+}
+
+#weather1 {
+  color: azure;
+  background-color: rgb(36, 35, 35);
+}
+
+#weather2 {
+  color: rgb(90, 182, 240);
+  background-color: rgb(63, 63, 63);
 }

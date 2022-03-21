@@ -3,6 +3,7 @@ import Card from 'react-bootstrap/Card';
 import axios from 'axios';
 import CityForm from './CityForm';
 import Alert from 'react-bootstrap/Alert';
+import Weather from './Weather';
 class Main extends React.Component {
   constructor(props) {
     super(props);
@@ -13,6 +14,7 @@ class Main extends React.Component {
       error: false,
       errorType: '',
       errorStatus: '',
+      weatherData: null,
     };
   }
 
@@ -27,6 +29,10 @@ class Main extends React.Component {
       });
       const locationResponse = await axios.get(url);
       this.setState({ locationObj: locationResponse.data[0] });
+      const weatherResults = `http://localhost:3001/weather?searchQuery=${this.state.cityName}`;
+
+      const weatherResponse = await axios.get(weatherResults);
+      this.setState({ weatherData: weatherResponse });
     } catch (error) {
       this.setState({
         error: true,
@@ -66,11 +72,16 @@ class Main extends React.Component {
               ''
             )}
           </>
+          {this.state.weatherData ? (
+            <Weather weatherData={this.state.weatherData.data} />
+          ) : (
+            ''
+          )}
           <Card.Img
             variant="top"
             src={
               this.state.locationObj
-                ? `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.locationObj.lat},${this.state.locationObj.lon}&size=600x600&zoom=10.5`
+                ? `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.locationObj.lat},${this.state.locationObj.lon}&zoom=10.5`
                 : ''
             }
             alt=""

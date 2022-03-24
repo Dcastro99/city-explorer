@@ -2,6 +2,12 @@
   background-color: black;
 }
 
+.list-group-item {
+  font-size: 12px;
+  height: 4rem;
+  width: 6rem;
+}
+
 #appcon {
   min-height: 100vh;
   text-align: center;
@@ -21,6 +27,10 @@
 .App {
   display: flex;
   flex-direction: row;
+}
+
+.card-img-top {
+  margin-top: 3rem;
 }
 
 #mapCard {

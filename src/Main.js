@@ -44,9 +44,10 @@ class Main extends React.Component {
 
   getWeather = async () => {
     this.setState({ weatherData: null });
-    const weatherResults = `${process.env.REACT_APP_SERVER}/weather?searchQuery=${this.state.cityName}`;
+    const weatherResults = `${process.env.REACT_APP_SERVER}/weather?lat=${this.state.locationObj.lat}&lon=${this.state.locationObj.lon}&searchQuery=${this.state.cityName}`;
     const weatherResponse = await axios.get(weatherResults);
-    this.setState({ weatherData: weatherResponse });
+    console.log(weatherResponse.data.data);
+    this.setState({ weatherData: weatherResponse.data });
   };
 
   nameSearch = (event) => {
@@ -79,11 +80,9 @@ class Main extends React.Component {
               ''
             )}
           </>
-          {this.state.weatherData ? (
-            <Weather weatherData={this.state.weatherData.data} />
-          ) : (
-            ''
-          )}
+
+          <Weather weatherData={this.state.weatherData} />
+
           <Card.Img
             variant="top"
             src={

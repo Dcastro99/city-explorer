@@ -5,15 +5,14 @@ class Weather extends React.Component {
   render() {
     return (
       <div id="wbox">
-        {this.props.weatherData.map((day, idx) => (
-          <ListGroup variant="flush">
-            <ListGroup.Item id="weather1" key={idx}>
-              {day.description}
-            </ListGroup.Item>
+        {this.props.weatherData &&
+          this.props.weatherData.map((day, idx) => (
+            <ListGroup variant="flush" key={idx}>
+              <ListGroup.Item id="weather1">{day.description}</ListGroup.Item>
 
-            <ListGroup.Item id="weather2"> {day.date}</ListGroup.Item>
-          </ListGroup>
-        ))}
+              <ListGroup.Item id="weather2"> {day.date}</ListGroup.Item>
+            </ListGroup>
+          ))}
       </div>
     );
   }

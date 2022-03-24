@@ -9,13 +9,13 @@ import Footer from './Footer';
 class App extends React.Component {
   render() {
     return (
-      <Container id="appcon" className="App">
+      <div id="appcon" className="App">
         <Header />
 
         <Main />
 
         <Footer />
-      </Container>
+      </div>
     );
   }
 }

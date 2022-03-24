@@ -3,14 +3,11 @@ import ListGroup from 'react-bootstrap/ListGroup';
 
 class Weather extends React.Component {
   render() {
-    // const weatherDay = ['Monday', 'Tuesday', 'Wednesday'];
-    // weatherDay.forEach('');
-
     return (
       <div id="wbox">
-        {this.props.weatherData.map((day) => (
+        {this.props.weatherData.map((day, idx) => (
           <ListGroup variant="flush">
-            <ListGroup.Item id="weather1" key={day.date}>
+            <ListGroup.Item id="weather1" key={idx}>
               {day.description}
             </ListGroup.Item>
 

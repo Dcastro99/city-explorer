@@ -3,7 +3,10 @@ import Card from 'react-bootstrap/Card';
 import axios from 'axios';
 import CityForm from './CityForm';
 import Alert from 'react-bootstrap/Alert';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Weather from './Weather';
+import Movie from './Movie';
 class Main extends React.Component {
   constructor(props) {
     super(props);
@@ -15,6 +18,7 @@ class Main extends React.Component {
       errorType: '',
       errorStatus: '',
       weatherData: null,
+      movieData: null,
     };
   }
 
@@ -31,6 +35,7 @@ class Main extends React.Component {
       const locationResponse = await axios.get(url);
       this.setState({ locationObj: locationResponse.data[0] });
       await this.getWeather();
+      await this.getMovie();
     } catch (error) {
       this.setState({
         error: true,
@@ -46,8 +51,15 @@ class Main extends React.Component {
     this.setState({ weatherData: null });
     const weatherResults = `${process.env.REACT_APP_SERVER}/weather?lat=${this.state.locationObj.lat}&lon=${this.state.locationObj.lon}&searchQuery=${this.state.cityName}`;
     const weatherResponse = await axios.get(weatherResults);
-    console.log(weatherResponse.data.data);
     this.setState({ weatherData: weatherResponse.data });
+  };
+
+  getMovie = async () => {
+    this.setState({ movieData: null });
+    const movieResults = `${process.env.REACT_APP_SERVER}/movies?searchQuery=${this.state.cityName}`;
+    const movieResponse = await axios.get(movieResults);
+
+    this.setState({ movieData: movieResponse.data });
   };
 
   nameSearch = (event) => {
@@ -83,25 +95,33 @@ class Main extends React.Component {
 
           <Weather weatherData={this.state.weatherData} />
 
-          <Card.Img
-            variant="top"
-            src={
-              this.state.locationObj
-                ? `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.locationObj.lat},${this.state.locationObj.lon}&zoom=10.5`
-                : ''
-            }
-            alt=""
-          />
           {this.state.locationObj ? (
             <Card.Body>
-              <Card.Text>{this.state.locationObj.display_name}</Card.Text>
-              <Card.Text>{this.state.locationObj.lat}</Card.Text>
-              <Card.Text>{this.state.locationObj.lon}</Card.Text>
+              <Row>
+                <Col>
+                  <Card.Img
+                    variant="top"
+                    src={
+                      this.state.locationObj
+                        ? `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.locationObj.lat},${this.state.locationObj.lon}&zoom=10.5`
+                        : ''
+                    }
+                    alt=""
+                  />
+                </Col>
+                <Col id="col2">
+                  <Card.Text>{this.state.locationObj.display_name}</Card.Text>
+                  <Card.Text>{this.state.locationObj.lat}</Card.Text>
+                  <Card.Text>{this.state.locationObj.lon}</Card.Text>
+                </Col>
+              </Row>
             </Card.Body>
           ) : (
             ''
           )}
         </Card>
+
+        <Movie movieData={this.state.movieData} />
       </>
     );
   }

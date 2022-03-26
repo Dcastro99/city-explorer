@@ -7,6 +7,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Weather from './Weather';
 import Movie from './Movie';
+import './Main.css';
 class Main extends React.Component {
   constructor(props) {
     super(props);
@@ -58,7 +59,7 @@ class Main extends React.Component {
     this.setState({ movieData: null });
     const movieResults = `${process.env.REACT_APP_SERVER}/movies?searchQuery=${this.state.cityName}`;
     const movieResponse = await axios.get(movieResults);
-
+    console.log(movieResponse);
     this.setState({ movieData: movieResponse.data });
   };
 
@@ -98,7 +99,7 @@ class Main extends React.Component {
           {this.state.locationObj ? (
             <Card.Body>
               <Row>
-                <Col>
+                <Col id="mapPic">
                   <Card.Img
                     variant="top"
                     src={
@@ -111,6 +112,7 @@ class Main extends React.Component {
                 </Col>
                 <Col id="col2">
                   <Card.Text>{this.state.locationObj.display_name}</Card.Text>
+                  <hr></hr>
                   <Card.Text>{this.state.locationObj.lat}</Card.Text>
                   <Card.Text>{this.state.locationObj.lon}</Card.Text>
                 </Col>

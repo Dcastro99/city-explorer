@@ -1,0 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Mono:wght@500&display=swap');
+
+#col2 {
+  font-family: 'Red Hat Mono', monospace;
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(2, 220, 220);
+}

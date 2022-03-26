@@ -7,13 +7,6 @@
   height: 4rem;
   width: 6rem;
 }
-#col2 {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  color: aliceblue;
-  border: 5px solid rgba(249, 218, 172, 0.79);
-}
 
 #appcon {
   min-height: 100vh;
@@ -37,6 +30,7 @@
 }
 
 .card-img-top {
+  border: 10px bold beige;
 }
 
 #mapCard {
@@ -44,24 +38,6 @@
 }
 #cardButton {
   margin: 10px;
-}
-
-#wbox {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  border: 10px bold beige;
-  padding: 1rem;
-}
-
-#weather1 {
-  color: azure;
-  background-color: rgb(36, 35, 35);
-}
-
-#weather2 {
-  color: rgb(90, 182, 240);
-  background-color: rgb(63, 63, 63);
 }
 
 #movieBox {

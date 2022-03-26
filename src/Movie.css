@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Hurricane&family=Mukta:wght@600&display=swap');
+
+#movieInfo {
+  /* border: 3px solid); */
+  border-radius: 20px;
+  font-family: 'Mukta', sans-serif;
+  color: rgb(43, 198, 226);
+  /* text-shadow: 0 2px 2px #02020256; */
+  background-color: rgb(57, 57, 57);
+}
+
+#cardBody {
+  font-family: 'Mukta', sans-serif;
+  font-size: 20px;
+  /* background-color: rgb(79, 76, 76); */
+}

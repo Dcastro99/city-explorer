@@ -6,8 +6,9 @@ import Alert from 'react-bootstrap/Alert';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Weather from './Weather';
-import Movie from './Movie';
+import Movies from './Movies';
 import './Main.css';
+
 class Main extends React.Component {
   constructor(props) {
     super(props);
@@ -101,6 +102,7 @@ class Main extends React.Component {
               <Row>
                 <Col id="mapPic">
                   <Card.Img
+                  id='mapImg'
                     variant="top"
                     src={
                       this.state.locationObj
@@ -123,7 +125,7 @@ class Main extends React.Component {
           )}
         </Card>
 
-        <Movie movieData={this.state.movieData} />
+        <Movies movieData={this.state.movieData} />
       </>
     );
   }

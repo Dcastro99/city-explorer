@@ -1,6 +1,7 @@
 import React from 'react';
-import ListGroup from 'react-bootstrap/ListGroup';
+
 import './Weather.css';
+import WeatherDay from './WeatherDay';
 
 class Weather extends React.Component {
   render() {
@@ -8,11 +9,7 @@ class Weather extends React.Component {
       <div id="wbox">
         {this.props.weatherData &&
           this.props.weatherData.map((day, idx) => (
-            <ListGroup variant="flush" key={idx}>
-              <ListGroup.Item id="weather1">{day.description}</ListGroup.Item>
-
-              <ListGroup.Item id="weather2"> {day.date}</ListGroup.Item>
-            </ListGroup>
+            <WeatherDay day={day} idx={idx} />
           ))}
       </div>
     );

@@ -14,3 +14,6 @@
   font-size: 20px;
   /* background-color: rgb(79, 76, 76); */
 }
+#overview {
+  overflow: auto;
+}

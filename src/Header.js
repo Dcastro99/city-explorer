@@ -6,9 +6,7 @@ class Header extends React.Component {
   render() {
     return (
       <Nav id="nav" defaultActiveKey="/home" as="ul">
-        <Nav.Item as="li">
-          <Nav.Link href="./">Home</Nav.Link>
-        </Nav.Item>
+        <Nav.Item as="li"></Nav.Item>
       </Nav>
     );
   }

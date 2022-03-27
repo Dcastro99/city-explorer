@@ -29,10 +29,6 @@
   flex-direction: row;
 }
 
-.card-img-top {
-  border: 10px bold beige;
-}
-
 #mapCard {
   background-color: rgb(0, 0, 0);
 }

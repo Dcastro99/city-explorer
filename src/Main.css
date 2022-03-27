@@ -6,3 +6,7 @@
   font-weight: bold;
   color: rgb(2, 220, 220);
 }
+
+#mapImg {
+  border: 5px solid rgba(120, 120, 120, 0.968);
+}

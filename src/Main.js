@@ -71,7 +71,7 @@ class Main extends React.Component {
   hide = () => {
     this.setState({ error: false });
   };
-
+  //ok
   render() {
     return (
       <>
@@ -102,7 +102,7 @@ class Main extends React.Component {
               <Row>
                 <Col id="mapPic">
                   <Card.Img
-                  id='mapImg'
+                    id="mapImg"
                     variant="top"
                     src={
                       this.state.locationObj

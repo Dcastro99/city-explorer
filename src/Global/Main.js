@@ -1,12 +1,13 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
+import Spinner from 'react-bootstrap/Spinner';
 import axios from 'axios';
 import CityForm from './CityForm';
 import Alert from 'react-bootstrap/Alert';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Weather from './Weather';
-import Movies from './Movies';
+import Weather from '../Weather/Weather';
+import Movies from '../Movies/Movies';
 import './Main.css';
 
 class Main extends React.Component {
@@ -21,11 +22,14 @@ class Main extends React.Component {
       errorStatus: '',
       weatherData: null,
       movieData: null,
+      loading: false,
+      mapUrl: '',
     };
   }
 
   getLocation = async (event) => {
     event.preventDefault();
+    this.setState({ loading: true });
     const url = `https://us1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&q=${this.state.cityName}&format=json`;
     this.setState({ locationObj: null });
     try {
@@ -38,6 +42,10 @@ class Main extends React.Component {
       this.setState({ locationObj: locationResponse.data[0] });
       await this.getWeather();
       await this.getMovie();
+      const mapUrl = `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.locationObj.lat},${this.state.locationObj.lon}&zoom=10.5`;
+
+      this.setState({ mapUrl });
+      this.setState({ loading: false });
     } catch (error) {
       this.setState({
         error: true,
@@ -45,6 +53,7 @@ class Main extends React.Component {
           ? error.response.data.error
           : error.response.data.weatherError,
         errorStatus: error.response.status,
+        loading: false,
       });
     }
   };
@@ -52,7 +61,10 @@ class Main extends React.Component {
   getWeather = async () => {
     this.setState({ weatherData: null });
     const weatherResults = `${process.env.REACT_APP_SERVER}/weather?lat=${this.state.locationObj.lat}&lon=${this.state.locationObj.lon}&searchQuery=${this.state.cityName}`;
+    console.log(this.state.locationObj.lat);
+    console.log(this.state.locationObj.lon);
     const weatherResponse = await axios.get(weatherResults);
+    console.log(weatherResponse.data);
     this.setState({ weatherData: weatherResponse.data });
   };
 
@@ -94,38 +106,41 @@ class Main extends React.Component {
               ''
             )}
           </>
-
-          <Weather weatherData={this.state.weatherData} />
-
-          {this.state.locationObj ? (
-            <Card.Body>
-              <Row>
-                <Col id="mapPic">
-                  <Card.Img
-                    id="mapImg"
-                    variant="top"
-                    src={
-                      this.state.locationObj
-                        ? `https://maps.locationiq.com/v3/staticmap?key=${process.env.REACT_APP_LOCATIONIQ_KEY}&center=${this.state.locationObj.lat},${this.state.locationObj.lon}&zoom=10.5`
-                        : ''
-                    }
-                    alt=""
-                  />
-                </Col>
-                <Col id="col2">
-                  <Card.Text>{this.state.locationObj.display_name}</Card.Text>
-                  <hr></hr>
-                  <Card.Text>{this.state.locationObj.lat}</Card.Text>
-                  <Card.Text>{this.state.locationObj.lon}</Card.Text>
-                </Col>
-              </Row>
-            </Card.Body>
+          {this.state.loading ? (
+            <div id="spinnerContainer">
+              <Spinner id="spinner" animation="grow" variant="info" />
+            </div>
           ) : (
-            ''
+            <>
+              <Weather weatherData={this.state.weatherData} />
+              {this.state.locationObj ? (
+                <Card.Body>
+                  <Row>
+                    <Col id="mapPic">
+                      <Card.Img
+                        id="mapImg"
+                        variant="top"
+                        src={this.state.locationObj ? this.state.mapUrl : ''}
+                        alt=""
+                      />
+                    </Col>
+                    <Col id="col2">
+                      <Card.Text>
+                        {this.state.locationObj.display_name}
+                      </Card.Text>
+                      <hr></hr>
+                      <Card.Text>{this.state.locationObj.lat}</Card.Text>
+                      <Card.Text>{this.state.locationObj.lon}</Card.Text>
+                    </Col>
+                  </Row>
+                </Card.Body>
+              ) : (
+                ''
+              )}
+            </>
           )}
         </Card>
-
-        <Movies movieData={this.state.movieData} />
+        {this.state.loading ? '' : <Movies movieData={this.state.movieData} />}
       </>
     );
   }

@@ -18,6 +18,7 @@ class Movies extends React.Component {
       <>
         {this.props.movieData ? (
           <>
+            <h2>{this.props.cityName} = Top Movies!</h2>
             <small id="timestamp">Movie info from: {date}</small>
             <Container id="movieBox">
               {this.props.movieData.data.map((movie, idx) => (

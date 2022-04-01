@@ -18,7 +18,7 @@ class Weather extends React.Component {
       <>
         {this.props.weatherData ? (
           <>
-            <h1>7 Day Forecast</h1>
+            <h1>{this.props.cityName} = 7 Day Forecast</h1>
             <small id="timestamp">Weather info from: {date}</small>
             <div id="wbox">
               {this.props.weatherData.data.map((day, idx) => (

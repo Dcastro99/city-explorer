@@ -112,7 +112,10 @@ class Main extends React.Component {
             </div>
           ) : (
             <>
-              <Weather weatherData={this.state.weatherData} />
+              <Weather
+                weatherData={this.state.weatherData}
+                cityName={this.state.cityName}
+              />
               {this.state.locationObj ? (
                 <Card.Body>
                   <Row>
@@ -140,7 +143,14 @@ class Main extends React.Component {
             </>
           )}
         </Card>
-        {this.state.loading ? '' : <Movies movieData={this.state.movieData} />}
+        {this.state.loading ? (
+          ''
+        ) : (
+          <Movies
+            cityName={this.state.cityName}
+            movieData={this.state.movieData}
+          />
+        )}
       </>
     );
   }
